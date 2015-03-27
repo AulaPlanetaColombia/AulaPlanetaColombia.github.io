@@ -1,7 +1,8 @@
-
+.DS_Store
 .sass-cache/
 scss/
 img/.keep
 js/bootstrap/
 js/bootstrap-sprockets.js
 js/bootstrap.js
+Thumbs.db
