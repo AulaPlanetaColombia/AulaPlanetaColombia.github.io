@@ -9,6 +9,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/ekko-lightbox.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -60,7 +61,17 @@
                       <h3 class="panel-title">Guías y manuales</h3>
                     </div>
                     <div class="panel-body">
-                      <a href="iconos.html"><i class="fa fa-book   fa-2x"></i>&nbsp;&nbsp; Ver guías y manuales</a>
+                        <p>
+                            <a href="guias.html"><i class="fa fa-book fa-2x"></i>&nbsp;&nbsp; Ver guías y manuales</a>
+                        </p>
+                        <p>
+                            <a href="img/NuevoEsquemaProdDigital.png" data-toggle="lightbox" data-title="Esquema general de producción">
+                                <figure class="thumbnail">
+                                    <img class="img-responsive" src="img/NuevoEsquemaProdDigital.png">
+                                    <figcaption>Esquema general de producción</figcaption>
+                                </figure>
+                            </a>
+                        </p>
                     </div>
                   </div>
                 </div>
@@ -82,6 +93,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/gh3.js"></script>
+    <script src="js/ekko-lightbox.min.js"></script>
     <script src="js/aulaPlaneta.js"></script>
+    <script type="text/javascript">
+        $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+    </script>
   </body>
 </html>
