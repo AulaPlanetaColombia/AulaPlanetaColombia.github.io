@@ -95,12 +95,43 @@
                     </div>
                 </div>
             </div>
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Ejemplos de recursos F</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Descargue los siguientes archivos ZIP haciendo clic derecho sobre el enlace correspondiente y seleccionando la opción <strong>Guardar enlace como...</strong></p>
+                        <div id="ejemplosRecursos"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Modelos de interactivos F</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Descargue los siguientes archivos ZIP haciendo clic derecho sobre el enlace correspondiente y seleccionando la opción <strong>Guardar enlace como...</strong></p>
+                        <div id="modelosRecursos"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/gh3.js"></script>
+    <script src="js/ekko-lightbox.min.js"></script>
     <script src="js/aulaPlaneta.js"></script>
+      <script>
+        cargaArchivos('guiasYformatos/recursos/motoresF/ejemplos','RecursosGenerales','master','AulaPlanetaColombia','ejemplosRecursos','<i class="fa fa-file-archive-o fa-2x"></i>');
+        cargaArchivos('guiasYformatos/recursos/motoresF/modelos','RecursosGenerales','master','AulaPlanetaColombia','modelosRecursos','<i class="fa fa-file-archive-o fa-2x"></i>');
+      </script>
   </body>
 </html>

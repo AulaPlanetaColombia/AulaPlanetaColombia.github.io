@@ -12,6 +12,48 @@ $( window ).resize(function() {
     ajustaContenido();
 });
 
+function cargaArchivos(ruta,nombreRepo,nombreRama,nombreUsuario,destino,icono) {
+    var usuario = new Gh3.User(nombreUsuario); // Usuario
+    var repo = new Gh3.Repository(nombreRepo, usuario); // Repo
+    var rutaArchivo = 'https://raw.githubusercontent.com/'+nombreUsuario+'/'+nombreRepo+'/'+nombreRama+'/'+ruta+'/';
+    var directorios = ruta.split('/');
+
+    repo.fetch(function(err,res) {
+        if(err) { throw "Error..." }
+        repo.fetchBranches(function(err,res){
+            if(err) { throw "Error..." }
+            var rama = repo.getBranchByName(nombreRama);
+            var numDir = directorios.length;
+            var i = 0;
+            iteraDir(rama,directorios,numDir,i);
+        });
+    });
+
+    function iteraDir(base,dirs,numDir,i){
+        if (i<numDir) {
+            var dir;
+            base.fetchContents(function(err,res){
+                if(err) { throw "Error..." }
+                dir = base.getDirByName(dirs[i]);
+                i++;
+                iteraDir(dir,dirs,numDir,i);
+            });
+        } else {
+            listaArchivos(base);
+        }
+    }
+    function listaArchivos(base){
+        base.fetchContents(function(err,res){
+            if(err) { throw "Error..." }
+            base.eachContent(function(arch){
+                if (arch.type == "file") {
+                    $('#'+destino).append('<p><a href="'+rutaArchivo+arch.name+'" target="_blank">'+icono+' '+arch.name+'</a></p>');
+                    console.log('Archivo: '+arch.name);
+                }
+            });
+        });
+    }
+}
 function cargaIconos() {
     var colFoto = 0;
     var panel1 = '<div class="panel panel-default"><div class="panel-heading" role="tab" id="';
