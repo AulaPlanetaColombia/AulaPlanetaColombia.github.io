@@ -47,8 +47,8 @@ function cargaArchivos(ruta,nombreRepo,nombreRama,nombreUsuario,destino,icono) {
             if(err) { throw "Error..." }
             base.eachContent(function(arch){
                 if (arch.type == "file") {
+                    $('.precarga').remove();
                     $('#'+destino).append('<p><a href="'+rutaArchivo+arch.name+'" target="_blank">'+icono+' '+arch.name+'</a></p>');
-                    console.log('Archivo: '+arch.name);
                 }
             });
         });
@@ -145,6 +145,7 @@ function cargaIconos() {
                                     });
                                     colFoto = 0;
                                     salida += panel8;
+                                    $('.precarga').remove();
                                     $('#iconosRecursos').append(salida);
                                 });
                             }
