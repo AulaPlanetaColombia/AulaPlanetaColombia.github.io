@@ -2,20 +2,21 @@
 Scripts de aulaPlaneta
 */
 var panelCont = $('.ajustarAPanel').parent();
-var k = $('.ajustarAPanel').height()/$('.ajustarAPanel').width();
-ajustaContenido();
+var k = $('.ajustarAPanel').height() / $('.ajustarAPanel').width();
 function ajustaContenido() {
     $('.ajustarAPanel').width(panelCont.width());
-    $('.ajustarAPanel').height(panelCont.width()*k);
+    $('.ajustarAPanel').height(panelCont.width() * k);
 }
-$( window ).resize(function() {
+ajustaContenido();
+$(window).resize(function () {
     ajustaContenido();
 });
 
-function cargaArchivos(ruta,nombreRepo,nombreRama,nombreUsuario,destino,icono) {
+function cargaArchivos(ruta, nombreRepo, nombreRama, nombreUsuario, destino, icono, nomArchivo, esWeb) {
     var usuario = new Gh3.User(nombreUsuario); // Usuario
     var repo = new Gh3.Repository(nombreRepo, usuario); // Repo
     var rutaArchivo = 'https://raw.githubusercontent.com/'+nombreUsuario+'/'+nombreRepo+'/'+nombreRama+'/'+ruta+'/';
+    var rutaWeb = 'http://htmlpreview.github.io/?https://github.com/'+nombreUsuario+'/'+nombreRepo+'/'+nombreRama+'/'+ruta+'/';
     var directorios = ruta.split('/');
 
     repo.fetch(function(err,res) {
@@ -39,8 +40,24 @@ function cargaArchivos(ruta,nombreRepo,nombreRama,nombreUsuario,destino,icono) {
                 iteraDir(dir,dirs,numDir,i);
             });
         } else {
-            listaArchivos(base);
+            if (nomArchivo != undefined) {
+                listaDir(base);
+            } else {
+                listaArchivos(base);
+            }
         }
+    }
+    function listaDir(base) {
+        base.fetchContents(function(err,res){
+            if(err) { throw "Error..." }
+            var rutaFinal = (esWeb ? rutaWeb : rutaArchivo);
+            base.eachContent(function(dir){
+                if (dir.type == "dir") {
+                    $('.precarga').remove();
+                    $('#'+destino).append('<p><a href="'+rutaFinal+dir.name+'/'+nomArchivo+'" target="_blank">'+icono+' '+dir.name+'</a></p>');
+                }
+            });
+        });
     }
     function listaArchivos(base){
         base.fetchContents(function(err,res){
