@@ -178,6 +178,43 @@
                                 <i class="fa fa-file-excel-o fa-2x"></i>&nbsp;&nbsp; Listado de recursos en blanco para aulaPlaneta Colombia
                             </a>
                         </p>
+                    </div><!-- /.panel-body -->
+                </div><!-- /.panel -->
+            </div><!-- /.col-sm-4 -->
+            <div class="col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Convertidor de URL</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row" id="ConvURLorigen">
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <label class="sr-only" for="URLorigen">URL del Banco de Contenidos</label>
+                                    <input type="text" class="form-control" id="URLorigen" placeholder="URL del Banco de Contenidos">
+                                </div><!-- /.form-group -->
+                            </div><!-- /.col-sm-9 -->
+                            <div class="col-sm-3">
+                                <button class="btn btn-block btn-primary" type="submit"><i class="fa fa-check"></i></button>
+                            </div><!-- /.col-sm-3 -->
+                            <div class="col-sm-12 help-block">Pegue la dirección del recurso del Banco de Contenidos en el campo de texto y oprima el botón.</div>
+                        </div><!-- /.row #ConvURLorigen -->
+                        <div class="row" id="ConvURLspin">
+                            <div class="col-sm-12">
+                                <button class="btn btn-block btn-default" disabled="disabled" type="submit"><i class="fa fa-spinner fa-spin"></i></button>
+                            </div><!-- /.col-sm-12 -->
+                        </div><!-- /.row #ConvURLspin -->
+                        <div class="row" id="ConvURLdestino">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="3"></textarea>
+                                </div><!-- /.form-group -->
+                            </div><!-- /.col-sm-12 -->
+                            <div class="col-sm-12 help-block">Copie y pegue esta dirección URL en el manuscrito o en los recursos en los que necesite crear un vínculo [VER].</div>
+                            <div class="col-sm-12">
+                                <button class="btn btn-block btn-default" type="submit"><i class="fa fa-refresh"></i> Convertir otra URL</button>
+                            </div><!-- /.col-sm-12 -->
+                        </div><!-- /.row #ConvURLdestino -->
                     </div>
                 </div>
             </div>
@@ -194,6 +231,7 @@
       <script>
         cargaArchivos('guiasYformatos/recursos/motoresF/ejemplos','RecursosGenerales','master','AulaPlanetaColombia','ejemplosRecursos','<i class="fa fa-file-archive-o fa-2x"></i>');
         cargaArchivos('guiasYformatos/recursos/motoresF/modelos','RecursosGenerales','master','AulaPlanetaColombia','modelosRecursos','<i class="fa fa-file-archive-o fa-2x"></i>');
+          cargaConvertidor('#ConvURLorigen', '#ConvURLspin', '#ConvURLdestino');
       </script>
   </body>
 </html>

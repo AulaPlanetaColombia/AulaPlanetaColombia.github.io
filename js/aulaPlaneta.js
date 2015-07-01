@@ -11,7 +11,30 @@ ajustaContenido();
 $(window).resize(function () {
     ajustaContenido();
 });
-
+function cargaConvertidor(origen, spin, destino) {
+    function inicia() {
+        $(origen + ' input').val('');
+        $(origen).show();
+        $(spin).hide();
+        $(destino).hide();
+    }
+    function reemplazo(match, p1, p2, p3, p4, offset, string){
+        return '/BCRedir.aspx?URL=' + p2 + 'ruta=Buscador';
+    }
+    inicia();
+    $(origen + ' button').click(function(){
+        $(origen).hide();
+        $(spin).show();
+        var valOrigen = $(origen + ' input').val();
+        var salida = valOrigen.replace(/(http:\/\/aulaplaneta\.planetasaber\.com)(\/encyclopedia\/default\.asp\?[a-z,=,0-9,&,A-Z]*)(ruta=[a-zA-Z]*)([\w\W]*)/, reemplazo);
+        $(destino + ' textarea').html(salida);
+        $(spin).hide();
+        $(destino).show();
+        $(destino + ' button').click(function(){
+            inicia();
+        });
+    });
+}
 function cargaArchivos(ruta, nombreRepo, nombreRama, nombreUsuario, destino, icono, nomArchivo, esWeb) {
     var usuario = new Gh3.User(nombreUsuario); // Usuario
     var repo = new Gh3.Repository(nombreRepo, usuario); // Repo
