@@ -18,15 +18,16 @@ function cargaConvertidor(origen, spin, destino) {
         $(spin).hide();
         $(destino).hide();
     }
-    function reemplazo(match, p1, p2, p3, p4, offset, string){
-        return '/BCRedir.aspx?URL=' + p2 + 'ruta=Buscador';
+    function reemplazo(match, p1, p2, p3, p4, p5, p6, p7, p8, p9, offset, string){
+        return '/BCRedir.aspx?URL=' + p2 + p3 + p5 + 'ruta=Buscador';
     }
     inicia();
     $(origen + ' button').click(function(){
         $(origen).hide();
         $(spin).show();
         var valOrigen = $(origen + ' input').val();
-        var salida = valOrigen.replace(/(http:\/\/aulaplaneta\.planetasaber\.com)(\/encyclopedia\/default\.asp\?[a-z,=,0-9,&,A-Z]*)(ruta=[a-zA-Z]*)([\w\W]*)/, reemplazo);
+        var salida = valOrigen.replace(/(http:\/\/aulaplaneta\.planetasaber\.com)(\/encyclopedia\/default\.asp\?)(id[a-z]*=[0-9A-Z]*&)?(amp;)?(id[a-z]*=[0-9A-Z]*&)?(amp;)?(ruta=[A-Z]?[a-z]*&(amp;)?)([\w\W]*)/, reemplazo);
+        /* Guardado en https://regex101.com/r/wM5gE7/1 */
         $(destino + ' textarea').html(salida);
         $(spin).hide();
         $(destino).show();
