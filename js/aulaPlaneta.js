@@ -1,9 +1,9 @@
 /*
 Scripts de aulaPlaneta
 */
-var panelCont = $('.ajustarAPanel').parent();
-var k = $('.ajustarAPanel').height() / $('.ajustarAPanel').width();
 function ajustaContenido() {
+    var panelCont = $('.ajustarAPanel').parent();
+    var k = $('.ajustarAPanel').height() / $('.ajustarAPanel').width();
     $('.ajustarAPanel').width(panelCont.width());
     $('.ajustarAPanel').height(panelCont.width() * k);
 }
@@ -11,6 +11,63 @@ ajustaContenido();
 $(window).resize(function () {
     ajustaContenido();
 });
+function iniciaNews() {
+    if (Cookies.get('ap-news') !== 'ok') {
+        $('.new01').popover({
+            container: 'body',
+            html: true,
+            placement: 'right',
+            title: '<h4>Algo ha cambiado por aquí...</h4>',
+            trigger: 'manual',
+            content: '<p>Todas las opciones, ventanas y presentaciones de esta página siguen aquí, pero en forma de vínculos en este <strong>Índice de recursos</strong>.</p><button class="btn btn-primary btn-block abreNew02">Siguiente</button>'
+        });
+        $('.new02').popover({
+            container: 'body',
+            html: true,
+            placement: 'left',
+            title: '<h4>¡No olvide suscribirse!</h4>',
+            trigger: 'manual',
+            content: '<p>Para mantenerse informado de todas las novedades del proyecto aulaPlaneta, de las nuevas herramientas y de las últimas noticias del proyecto.</p><button class="btn btn-primary btn-block cierraNews">Entendido</button>'
+        });
+        $('.container').after('<div id="fondoNews" class="modal-backdrop fade in" style="height: 798px;"></div>');
+        $('#fondoNews').click(function(){
+            $('.new01').popover('hide');
+            $('.new02').popover('hide');
+            $('#fondoNews').remove();
+        });
+        $('.new01').popover('show');
+        $('.abreNew02').click(function(){
+            $('.new01').popover('hide');
+            $('.new02').popover('show');
+            $('.cierraNews').click(function(){
+                $('.new02').popover('hide');
+                $('#fondoNews').remove();
+                Cookies.set('ap-news', 'ok', { expires: 30 });
+            });
+        });
+    }
+}
+function activaCargaForm(origen, destino) {
+    $(destino).children().hide();
+    $(origen + ' button').click(function(){
+        $(destino).children('.' + $(this).attr('data-destino')).show();
+        $(origen).hide();
+    });
+}
+function activaModal(nombreModal){
+    $(nombreModal).on('shown.bs.modal', function (e) {
+        var origen = e.relatedTarget;
+        var titulo = $(origen).attr('title');
+        var contenido = $(origen).attr('data-cont');
+        var k = $(contenido).attr('height') / $(contenido).attr('width');
+        var cuerpo = $(this).find('.modal-body');
+        $(this).find('.modal-title').html(titulo);
+        $(cuerpo).html(contenido);
+        $(cuerpo).children().width($(cuerpo).width());
+        $(cuerpo).children().height($(contenido).attr('width') * k);
+        console.log(k);
+    });
+}
 function cargaConvertidor(origen, spin, destino) {
     function inicia() {
         $(origen + ' input').val('');
@@ -18,16 +75,16 @@ function cargaConvertidor(origen, spin, destino) {
         $(spin).hide();
         $(destino).hide();
     }
-    function reemplazo(match, p1, p2, p3, p4, p5, p6, p7, p8, p9, offset, string){
-        return '/BCRedir.aspx?URL=' + p2 + p3 + p5 + 'ruta=Buscador';
+    function reemplazo(match, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, offset, string){
+        return '/BCRedir.aspx?URL=' + p3 + p4 + p5 + p6 + p7 + 'ruta=Buscador';
     }
     inicia();
     $(origen + ' button').click(function(){
         $(origen).hide();
         $(spin).show();
         var valOrigen = $(origen + ' input').val();
-        var salida = valOrigen.replace(/(http:\/\/aulaplaneta\.planetasaber\.com)(\/encyclopedia\/default\.asp\?)(id[a-z]*=[0-9A-Z]*&)?(amp;)?(id[a-z]*=[0-9A-Z]*&)?(amp;)?(ruta=[A-Z]?[a-z]*&(amp;)?)([\w\W]*)/, reemplazo);
-        /* Guardado en https://regex101.com/r/wM5gE7/1 */
+        var salida = valOrigen.replace(/(http:\/\/[a-z]+\.[a-z]+\.com)(\/BCRedir\.aspx\?URL=)?(\/encyclopedia\/default\.asp\?)(id[a-z]*=[0-9A-Z]*&)?(amp;)?(id[a-z]*=[0-9A-Z]*&)?(amp;)?(ruta=[A-Z]?[a-z]*&?(amp;)?)([^"]*)/, reemplazo);
+        /* Guardado en https://regex101.com/r/wM4uS2/2 */
         $(destino + ' textarea').html(salida);
         $(spin).hide();
         $(destino).show();
