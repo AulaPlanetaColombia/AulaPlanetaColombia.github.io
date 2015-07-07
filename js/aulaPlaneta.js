@@ -248,6 +248,7 @@ function cargaIconos() {
                                 });
                             }
                         });
+                        $('#tablaRecursos').after('<br>');
                     });
                 });
             });

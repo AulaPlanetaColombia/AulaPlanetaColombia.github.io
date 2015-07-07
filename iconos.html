@@ -52,6 +52,97 @@
             <div class="panel-body" id="iconosRecursos">
                 <p>Despliegue la materia correspondiente y haga clic sobre el tipo de recurso que necesita.</p>
                 <p>Recuerde que por cada imagen hay dos versiones: la med (grande) y la thumb (pequeña).</p>
+                <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#tablaRecursos" aria-expanded="false" aria-controls="tablaRecursos">
+                    ¿En qué tipo de recursos debo usar estos íconos?&nbsp;&nbsp; <i class="fa fa-caret-down fa-lg"></i>
+                </button>
+                <style type="text/css">
+                    #tablaRecursos table th:last-of-type {text-align: center}
+                    #tablaRecursos table td:last-of-type {text-align: center}
+                    #tablaRecursos table td {vertical-align: middle}
+                </style>
+                <div class="collapse" id="tablaRecursos">
+                    <div class="well">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo de recurso</th>
+                                    <th>Ícono</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Recurso F</td>
+                                    <td>La primera imagen del recurso</td>
+                                </tr>
+                                <tr>
+                                    <td>Recurso M<br><small>(excepto M11, M14, M15, M101 o M102)</small></td>
+                                    <td>
+                                        <img src="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/graficos/iconosRecursos/CienciasSociales/recursosM/thumb.jpg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Recurso M11A</td>
+                                    <td>
+                                        <img src="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/graficos/iconosRecursos/CienciasSociales/recursoM11A/thumb.jpg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Recurso M14A</td>
+                                    <td>
+                                        <img src="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/graficos/iconosRecursos/CienciasSociales/recursoM14A/thumb.jpg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Recurso M15A</td>
+                                    <td>
+                                        <img src="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/graficos/iconosRecursos/CienciasSociales/recursoM15A/thumb.jpg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mapa conceptual</td>
+                                    <td>
+                                        <img src="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/graficos/iconosRecursos/CienciasSociales/mapaConceptual/thumb.jpg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Evaluación</td>
+                                    <td>
+                                        <img src="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/graficos/iconosRecursos/CienciasSociales/evaluacion/thumb.jpg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Recurso M101A</td>
+                                    <td>
+                                        <img src="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/graficos/iconosRecursos/CienciasSociales/recursosM101/thumb.jpg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Recurso M101 + F</td>
+                                    <td>
+                                        <img src="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/graficos/iconosRecursos/CienciasSociales/recursoM101+F/thumb.png">
+                                        <i class="fa fa-plus fa-lg"></i>&nbsp;&nbsp; La primera imagen del recurso F
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Recurso M102A</td>
+                                    <td>
+                                        <img src="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/graficos/iconosRecursos/CienciasSociales/recursosM102/thumb.jpg">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Recurso M102 + F</td>
+                                    <td>
+                                        <img src="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/graficos/iconosRecursos/CienciasSociales/recursoM102+F/thumb.png">
+                                        <i class="fa fa-plus fa-lg"></i>&nbsp;&nbsp; La primera imagen del recurso F
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        ¿Sigue con dudas? Consulte <a title="Herramientas editoriales digitales" data-cont="<iframe src='https://docs.google.com/presentation/d/11rLJc3uP7f5gTeUqROt7cehPxKcGA1l2x3_e4VSwZg0/embed?start=false&loop=false&delayms=5000' frameborder='0' width='960' height='569' allowfullscreen='true' mozallowfullscreen='true' webkitallowfullscreen='true'></iframe>" href="#" data-toggle="modal" data-target="#ventanaModal">
+                            <i class="fa fa-graduation-cap fa-lg fa-fw"></i>&nbsp;Herramientas editoriales digitales
+                        </a>
+                    </div><!-- /.well -->
+                </div><!-- /.collapse -->
                 <div class="precarga"><i class="fa fa-refresh fa-spin fa-3x"></i> Cargando contenidos...</div>
                 <!-- Aquí se insertan los íconos de recursos -->
             </div>
@@ -105,6 +196,23 @@
         </div>
       </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="ventanaModal" tabindex="-1" role="dialog" aria-labelledby="VentanaModal">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="VentanaModal">Modal title</h4>
+          </div><!-- /.modal-header -->
+          <div class="modal-body">
+            ...
+          </div><!-- /.modal-body -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div><!-- /.modal-footer -->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -115,6 +223,7 @@
     <script src="js/aulaPlaneta.js"></script>
     <script type="text/javascript">
         cargaIconos();
+        activaModal('#ventanaModal');
     </script>
   </body>
 </html>
