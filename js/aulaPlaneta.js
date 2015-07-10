@@ -27,22 +27,36 @@ function iniciaNews() {
             placement: 'left',
             title: '<h4>¡No olvide suscribirse!</h4>',
             trigger: 'manual',
-            content: '<p>Para mantenerse informado de todas las novedades del proyecto aulaPlaneta, de las nuevas herramientas y de las últimas noticias del proyecto.</p><button class="btn btn-primary btn-block cierraNews">Entendido</button>'
+            content: '<p>Para mantenerse informado de todas las novedades del proyecto aulaPlaneta, de las nuevas herramientas y de las últimas noticias del proyecto.</p><button class="btn btn-primary btn-block abreNew03">Siguiente</button>'
+        });
+        $('.new03').popover({
+            container: 'body',
+            html: true,
+            placement: 'right',
+            title: '<h4>Nueva herramienta</h4>',
+            trigger: 'manual',
+            content: '<p>Herramienta para facilitar la labor de revisión final en plataforma de los editores. Si usted es un editor, lea atentamente este panel.</p><button class="btn btn-primary btn-block cierraNews">Entendido</button>'
         });
         $('.container').after('<div id="fondoNews" class="modal-backdrop fade in" style="height: 798px;"></div>');
         $('#fondoNews').click(function(){
             $('.new01').popover('hide');
             $('.new02').popover('hide');
+            $('.new03').popover('hide');
             $('#fondoNews').remove();
         });
         $('.new01').popover('show');
         $('.abreNew02').click(function(){
             $('.new01').popover('hide');
             $('.new02').popover('show');
-            $('.cierraNews').click(function(){
+            $('.abreNew03').click(function(){
+                $('.new01').popover('hide');
                 $('.new02').popover('hide');
-                $('#fondoNews').remove();
-                Cookies.set('ap-news', 'ok', { expires: 30 });
+                $('.new03').popover('show');
+                $('.cierraNews').click(function(){
+                    $('.new03').popover('hide');
+                    $('#fondoNews').remove();
+                    Cookies.set('ap-news', 'ok', { expires: 30 });
+                });
             });
         });
     }
