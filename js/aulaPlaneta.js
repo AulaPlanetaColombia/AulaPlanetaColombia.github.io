@@ -85,25 +85,31 @@ function activaModal(nombreModal){
 function cargaConvertidor(origen, spin, destino) {
     function inicia() {
         $(origen + ' input').val('');
+        $(destino + ' textarea').html('');
         $(origen).show();
         $(spin).hide();
         $(destino).hide();
     }
-    function reemplazo(match, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, offset, string){
-        return '/BCRedir.aspx?URL=' + p3 + p4 + p5 + p6 + p7 + 'ruta=Buscador';
+    function reemplazo(match, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, offset, string){
+        var salida = ['', p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16];
+        for (var p in salida) {
+            if (salida[p] === undefined)
+                salida[p] = '';
+        }
+        return '/BCRedir.aspx?URL=' + salida[3] + salida[4] + salida[5] + salida[6] + salida[7] + salida[8] + salida[10] + salida[13] + 'ruta=Buscador';
     }
     inicia();
     $(origen + ' button').click(function(){
         $(origen).hide();
         $(spin).show();
         var valOrigen = $(origen + ' input').val();
-        var salida = valOrigen.replace(/(http:\/\/[a-z]+\.[a-z]+\.com)(\/BCRedir\.aspx\?URL=)?(\/encyclopedia\/default\.asp\?)(id[a-z]*=[0-9A-Z]*&)?(amp;)?(id[a-z]*=[0-9A-Z]*&)?(amp;)?(ruta=[A-Z]?[a-z]*&?(amp;)?)([^"]*)/, reemplazo);
-        /* Guardado en https://regex101.com/r/wM4uS2/2 */
+        var salida = valOrigen.replace(/(http:\/\/[a-z]+\.[a-z]+\.com)(\/BCRedir\.aspx\?URL=)?(\/encyclopedia\/)(default\.)?(asp)(\?)?(\/)?(id[a-z]*=[0-9A-Z]*&)?(amp;)?(id[a-z]*=[0-9A-Z]*&)?(amp;)?(ruta=)?(LineaTiempo\.asp\?)?([A-Z]?[a-z]*&?(amp;)?)([^"]*)/, reemplazo);
+        /* Guardado en https://regex101.com/r/wM4uS2/6 */
         $(destino + ' textarea').html(salida);
         $(spin).hide();
         $(destino).show();
         $(destino + ' button').click(function(){
-            inicia();
+            location.reload();
         });
     });
 }
