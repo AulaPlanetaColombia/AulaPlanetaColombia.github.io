@@ -221,7 +221,7 @@ function cargaIconos() {
                                     salida += nombreArea+panel5+contenido+panel6+encabezado+panel7;
                                     carpeta.eachContent(function(archivo) {
                                         var rutaIMG = rutaFoto+content.name+'/'+archivo.name+'/med.';
-                                        if (archivo.name.substr(-1) == 'F') {
+                                        if (archivo.name.substr(-1) == 'F' || archivo.name.substr(-6) == 'imagen') {
                                             rutaIMG += 'png';
                                         } else {
                                             rutaIMG += 'jpg';
