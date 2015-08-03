@@ -11,6 +11,12 @@ ajustaContenido();
 $(window).resize(function () {
     ajustaContenido();
 });
+function volverAnterior(id) {
+    $(id).click(function(){
+        parent.history.back();
+        return false;
+    });
+}
 function iniciaNews() {
     if (Cookies.get('ap-news') !== 'ok') {
         $('.new01').popover({
@@ -79,7 +85,10 @@ function activaModal(nombreModal){
         $(cuerpo).html(contenido);
         $(cuerpo).children().width($(cuerpo).width());
         $(cuerpo).children().height($(contenido).attr('width') * k);
-        console.log(k);
+    });
+    $(nombreModal).on('hide.bs.modal', function (e) {
+        var cuerpo = $(this).find('.modal-body');
+        $(cuerpo).html('');
     });
 }
 function cargaConvertidor(origen, spin, destino) {

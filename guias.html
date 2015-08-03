@@ -169,6 +169,12 @@
                                 <i class="fa fa-file-word-o fa-2x"></i>&nbsp;&nbsp; Listado de símbolos matemáticos que no requieren editor de ecuaciones
                             </a>
                         </p>
+
+                        <p>
+                            <a title="Mini-videotutorial de uso del editor LaTeX" data-cont="<iframe width='960' height='540' src='https://www.youtube.com/embed/4HZ1cDM2mAo?rel=0' frameborder='0' allowfullscreen></iframe>" href="#" data-toggle="modal" data-target="#ventanaModal">
+                                <i class="fa fa-youtube fa-2x fa-fw"></i>&nbsp;Mini-videotutorial de uso del editor LaTeX <span class="badge">¡Nuevo video!</span>
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -269,6 +275,23 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="ventanaModal" tabindex="-1" role="dialog" aria-labelledby="VentanaModal">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="VentanaModal">Modal title</h4>
+          </div><!-- /.modal-header -->
+          <div class="modal-body">
+            ...
+          </div><!-- /.modal-body -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div><!-- /.modal-footer -->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -281,6 +304,7 @@
       <script>
         cargaArchivos('guiasYformatos/recursos/motoresF/ejemplos','RecursosGenerales','master','AulaPlanetaColombia','ejemplosRecursos','<i class="fa fa-file-archive-o fa-2x"></i>');
         cargaArchivos('guiasYformatos/recursos/motoresF/modelos','RecursosGenerales','master','AulaPlanetaColombia','modelosRecursos','<i class="fa fa-file-archive-o fa-2x"></i>');
+        activaModal('#ventanaModal');
         cargaConvertidor('#ConvURLorigen', '#ConvURLspin', '#ConvURLdestino');
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
