@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="../favicon.png"><!-- Major Browsers -->
+        <!--[if IE]><link rel="SHORTCUT ICON" href="../favicon.ico"/><![endif]--><!-- Internet Explorer-->
+        <title>aulaPlaneta Colombia</title>
+        <!-- Bootstrap -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <a class="navbar-brand volver" href="#">
+                    <i class="fa fa-chevron-left"></i>&nbsp;&nbsp; Volver
+                </a>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <textarea id="htmlOrigen" class="form-control" rows="10"></textarea>
+                    <button id="generaListado" class="btn btn-block btn-primary"><i class="fa fa-cog"></i> Generar</button>
+                </div><!-- /.col-sm-4 -->
+                <div class="col-sm-8 listado">
+                </div><!-- /.col-sm-8 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $('#generaListado').click(function(){
+                $('.listado').html('');
+                var contenido = $('#htmlOrigen').val();
+                var listaElementos = $(contenido).find('.ng-binding.ng-scope:not(.colorEstadoBloqueado, .colorEstadoDesbloqueado, option)');
+                console.log(listaElementos.length);
+                for (var i = 0; i < listaElementos.length; i++) {
+                    var elem = listaElementos[i];
+                    $('.listado').append('<p>'+$(elem).html()+'</p>');
+                };
+            });
+        </script>
+    </body>
+    </body>
+</html>
