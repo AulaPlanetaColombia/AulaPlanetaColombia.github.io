@@ -257,6 +257,9 @@
                             </a>
                         </p>
                         <p>
+                            <a href="#" class="btn btn-default btn-block" onclick="cargaModalNews();"><i class="fa fa-list-alt"></i> Ver cambios en el listado</a>
+                        </p>
+                        <p>
                             <a href="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/guiasYformatos/recursos/listadoRecursosEnBlancoColombia.xlsx">
                                 <i class="fa fa-file-excel-o fa-2x"></i>&nbsp;&nbsp; Listado de recursos en blanco para aulaPlaneta Colombia
                             </a>
@@ -355,14 +358,17 @@
                 $('.new01').popover('show');
                 $('.cambioListado').click(function(e){
                     e.preventDefault();
-                    var cambios = '<ul><li>3º ESO: desaparecen los guiones MT porque la asignatura de Matemáticas se desdobla en dos materias, Matemáticas aplicadas (MTP) y Matemáticas académicas (MTC). Los guiones de ambas son muy similares, y son adaptaciones de los antiguos MT.</li><li>1º y 3º ESO-Lengua Castellana: Se han rehecho completamente los guiones.</li><li>Han desaparecido de la plataforma (porque su contenido se ha llevado a otros sitios):<ul><li>CN_07_05 - La corteza terrestre</li><li>CS_09_10 - El mundo globalizado</li><li>CS_09_11 - El mundo actual: cambios y contrastes</li></ul></li><li>Nuevo guión en Sociales de 1º ESO: CS_07_14- La tierra en el sistema solar</li><li>Nuevos guiones en Sociales de 3º ESO:<ul><li>CS_09_12 - La organización económica del mundo actual</li><li>CS_09_13 - La población y los recursos</li></ul></li></ul><p>A pesar de que en la plataforma (www.aulaplaneta.com) solo son visibles los nuevos guiones, en Greco se pueden utilizar ambos (viejos y nuevos), de manera que las escaletas se pueden montar con referencias de ambos lugares.</p>';
                     $('.new01').popover('hide');
-                    $('#VentanaModal.modal-title').html('Cambios importantes en el listado de recursos españoles');
-                    $('#ventanaModal .modal-body').html(cambios);
-                    $('#ventanaModal').modal('show');
                     Cookies.set('ap-news', 'ok', { expires: 30 });
+                    cargaModalNews();
                 });
             });
+        };
+        function cargaModalNews(){
+            var cambios = '<ul><li>3º ESO: desaparecen los guiones MT porque la asignatura de Matemáticas se desdobla en dos materias, Matemáticas aplicadas (MTP) y Matemáticas académicas (MTC). Los guiones de ambas son muy similares, y son adaptaciones de los antiguos MT.</li><li>1º y 3º ESO-Lengua Castellana: Se han rehecho completamente los guiones.</li><li>Han desaparecido de la plataforma (porque su contenido se ha llevado a otros sitios):<ul><li>CN_07_05 - La corteza terrestre</li><li>CS_09_10 - El mundo globalizado</li><li>CS_09_11 - El mundo actual: cambios y contrastes</li></ul></li><li>Nuevo guión en Sociales de 1º ESO: CS_07_14- La tierra en el sistema solar</li><li>Nuevos guiones en Sociales de 3º ESO:<ul><li>CS_09_12 - La organización económica del mundo actual</li><li>CS_09_13 - La población y los recursos</li></ul></li></ul><p>A pesar de que en la plataforma (www.aulaplaneta.com) solo son visibles los nuevos guiones, en Greco se pueden utilizar ambos (viejos y nuevos), de manera que las escaletas se pueden montar con referencias de ambos lugares.</p>';
+            $('#VentanaModal.modal-title').html('Cambios importantes en el listado de recursos españoles');
+            $('#ventanaModal .modal-body').html(cambios);
+            $('#ventanaModal').modal('show');
         };
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
