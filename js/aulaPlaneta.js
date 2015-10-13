@@ -23,9 +23,9 @@ function iniciaNews() {
             container: 'body',
             html: true,
             placement: 'right',
-            title: '<h4>Algo ha cambiado por aquí...</h4>',
+            title: '<h4>¡Actualización importante!</h4>',
             trigger: 'manual',
-            content: '<p>Todas las opciones, ventanas y presentaciones de esta página siguen aquí, pero en forma de vínculos en este <strong>Índice de recursos</strong>.</p><button class="btn btn-primary btn-block abreNew02">Siguiente</button>'
+            content: '<p>El listado de recursos españoles ha tenido importantes cambios. Haga clic en el siguiente botón para enterarse de los cambios.</p><button class="btn btn-primary btn-block cambioListado">¿Qué cambió?</button>'
         });
         $('.new02').popover({
             container: 'body',
