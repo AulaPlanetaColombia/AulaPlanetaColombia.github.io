@@ -11,6 +11,7 @@
         <!-- Bootstrap -->
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/dropzone.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,33 +21,130 @@
         <![endif]-->
     </head>
     <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <a class="navbar-brand volver" href="#">
+                    <i class="fa fa-chevron-left"></i>&nbsp;&nbsp; Volver
+                </a>
+            </div>
+        </nav>
         <div class="container">
-            <form>
-                <div class="form-group">
-                    <label for="cont">Contenido de cuadernoestudio.xml</label>
-                    <textarea id="cont" class="form-control" rows="10"></textarea>
+            <div class="row">
+                <div class="col-sm-6">
+                    <form action="/file-upload" class="dropzone" id="ce-dropzone"></form>
+                </div><!-- /.col-sm-6 -->
+                <div class="col-sm-6">
+                    <form action="/file-upload" class="dropzone" id="inf-dropzone"></form>
+                </div><!-- /.col-sm-6 -->
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <br><br>
+                    <button type="button" id="iniciaComp" class="btn btn-lg btn-primary btn-block" disabled="disabled">Iniciar comparación</button>
                 </div>
-                <button class="btn btn-primary btn-block" type="submit">Procesar</button>
-            </form>
+            </div><!-- /.row -->
             <div id="respuesta"></div>
         </div><!-- /.container -->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/bootstrap.min.js"></script>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/dropzone.js"></script>
+        <script src="../js/aulaPlaneta.js"></script>
         <script>
-            $('form').submit(function(e){
-                e.preventDefault();
-                // Usando RegEx según https://regex101.com/r/vF5cS9/3
-                var reg = /(<enlace(\W| )destino=")(\/LoIdRedirect\.aspx\?LoId=)([A-Z]{2}_[0-9]{2}_[0-9]{2}_[A-Z]{2}_Recurso[0-9]{3})(&amp;)(IdRecurso=)(RES-\w+)("?\W?"?>)(.+)(<\/enlace>)/g;
-                var matches = $('#cont').val().match(reg);
+            var archivoCargado = 0,CE,GRECO, lectorXML = new FileReader(), lectorCSV = new FileReader();
+            volverAnterior('.volver');
+            Dropzone.options.ceDropzone = {
+                paramName: "ce",
+                maxFilesize: 2048,
+                clickable: true,
+                dictDefaultMessage: "<i class='fa fa-file-text-o fa-3x'></i><br><br>Arrastre y suelte el cuadernoestudio.xml sobre esta zona, o haga clic para seleccionar un archivo.",
+                acceptedFiles: ".xml",
+                uploadMultiple: false,
+                autoProcessQueue: false,
+                init: function() {
+                    this.on("addedfile", function(file) {
+                        archivoCargado++;
+                        CE = file;
+                        activaTrigger();
+                    });
+                }
+            };
+            Dropzone.options.infDropzone = {
+                paramName: "inf",
+                maxFilesize: 2048,
+                clickable: true,
+                dictDefaultMessage: "<i class='fa fa-file-excel-o fa-3x'></i><br><br>Arrastre y suelte el informe de GRECO sobre esta zona, o haga clic para seleccionar un archivo.",
+                acceptedFiles: ".csv",
+                uploadMultiple: false,
+                autoProcessQueue: false,
+                init: function() {
+                    this.on("addedfile", function(file) {
+                        archivoCargado++;
+                        GRECO = file;
+                        activaTrigger();
+                    });
+                }
+            };
+            function activaTrigger() {
+                if (archivoCargado > 1) {
+                    $('#iniciaComp').removeAttr('disabled').click(function(e){
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        lectorXML.readAsText(CE);
+                        lectorXML.addEventListener('loadend', function(){
+                            leeXML(lectorXML.result);
+                        });
+                        lectorCSV.readAsBinaryString(GRECO);
+                        lectorCSV.addEventListener('loadend', function(){
+                            leeCSV(lectorCSV.result);
+                        });
+                    });
+                }
+            };
+            function leeXML(CExml) {
+                // Usando RegEx según https://regex101.com/r/vF5cS9/4
+                var reg = /(<enlace(\W|\s)+destino=")(\/LoIdRedirect\.aspx\?LoId=)([A-Z]{2}_[0-9]{2}_[0-9]{2}_[A-Z]{2}_Recurso[0-9]{3})(&amp;)(IdRecurso=)(RES-\w+)("?\W?\s?"?>)(.+)(<\/enlace>)/g;
+                var matches = CExml.match(reg);
                 var salida = '<table><thead><tr><th>LoID</th><th>RES</th><th>Título</th></thead><tbody>';
+                var cuaderno = [];
+                var cont = 0;
                 matches.forEach(function(val, index) {
                     salida += '<tr><td>'+val.replace(reg,'$4')+'</td><td>'+val.replace(reg,'$7')+'</td><td>'+val.replace(reg,'$9')+'</td></tr>';
+                    if (val.replace(reg,'$9').substr(0, 4) != 'Mapa' && val.replace(reg,'$9').substr(0, 4) != 'Eval') {
+                        cont++;
+                        cuaderno.push({orden: cont, titulo: val.replace(reg,'$9'), loid: val.replace(reg,'$4'), res: val.replace(reg,'$7')});
+                    }
                 });
                 salida += '</tbody></table>';
                 $('#respuesta').html(salida);
-            });
+                console.log(cuaderno);
+                return cuaderno;
+            };
+            function leeCSV(GRECOcsv) {
+                var salida = [];
+                var separador = GRECOcsv.charAt(33);
+                var lineas = GRECOcsv.split(separador);
+                separador = ";";
+                lineas.forEach(function(val, index) {
+                    if (index > 0){
+                        var items = val.split(separador);
+                        if (items[0] != undefined && items[3] != undefined &&
+                            items[0].substr(0, 4) != 'Mapa' &&
+                            items[0].substr(0, 4) != 'Eval' &&
+                            items[0].substr(0, 5) != 'Banco' &&
+                            items[3] != '1' &&
+                            items[3] != '2') {
+                            console.log(items[3]);
+                            //var cont = items[3].substr(0, -1);
+                            var cont = items[3]/10;
+                            salida.push({orden: cont, titulo: items[0], loid: items[1], res: items[2]});
+                        }
+                    }
+                });
+                console.log(salida);
+                return salida;
+            };
         </script>
     </body>
 </html>
