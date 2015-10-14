@@ -12,6 +12,18 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/aulaPlaneta.css" rel="stylesheet">
+        <style type="text/css">
+            body {
+                padding-top: 70px;
+            }
+            video {
+                display: block;
+                max-width: 640px;
+                height: auto;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        </style>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,11 +33,50 @@
         <![endif]-->
     </head>
     <body>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand volver" href="#">
-                    <i class="fa fa-chevron-left"></i>&nbsp;&nbsp; Volver
-                </a>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-colapsado">
+                        <span class="sr-only">Navegación alternada</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand volver" href="#">
+                        <i class="fa fa-chevron-left"></i>&nbsp;&nbsp; Volver
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-colapsado">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <p class="navbar-text">
+                                <i class="fa fa-file-video-o fa-lg"></i> Total de videos: <span></span>
+                            </p>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Descargas <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/guiasYformatos/recursos/Lista_Fuentes_OK.xls">
+                                        <i class="fa fa-file-excel-o fa-lg"></i> Listado de videos de Ciencias Naturales
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/videos/FormatoSolicitudVideos.xlsx">
+                                        <i class="fa fa-file-excel-o fa-lg"></i> Formato de solicitud de doblaje de videos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/videos/FormatoSolicitudVideos.xlsx">
+                                        <i class="fa fa-file-pdf-o fa-lg"></i> Mini-guía de solicitud de doblaje de videos
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <div class="container listaVideos">
@@ -45,7 +96,7 @@
                         <div class="row">
                             <div class="col-xs-10">
                                 <p>La calidad de este video es baja, para facilitar su visualización.</p>
-                                <p>No olvide solicitar el doblaje, en alta calidad, de este material, citando la mtarícula y el título del mismo.</p>
+                                <p>No olvide solicitar el doblaje, en alta calidad, de este material, citando la matrícula y el título del mismo.</p>
                             </div>
                             <div class="col-xs-2">
                                 <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Cerrar</button>
@@ -74,15 +125,17 @@
                 function generaThumbs() {
                     var ancho = $(window).width();
                     var numCol = (ancho < 768) ? 6 : (ancho < 991) ? 4 : (ancho < 1199) ? 3 : 2;
-                    var cont = 0, salida = '';
+                    var cont = 0, salida = '', total = 0;
                     videos.forEach(function(val, index) {
                         var inicio, final, thumb = ruta+'thumbs/'+val.matricula+extThumbs, video = ruta+'videos/'+val.matricula+extVids;
                         inicio = (cont > 0) ? '' : '<div class="row">';
                         final = (cont+numCol >= 12) ? '</div>' : '';
-                        salida += inicio+'<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"><div class="thumbnail video"><a data-toggle="modal" data-target="#ventanaModal" title="Título: '+val.titulo+'<br>Matrícula: '+val.matricula+'" href="#" data-cont="<video src=\''+video+'\' controls autoplay></video>"><img src="'+thumb+'"><div class="caption"><h6 style="text-align: center;">'+val.titulo+'</h6></div></a></div></div>'+final;
+                        salida += inicio+'<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2"><div class="thumbnail video"><a data-toggle="modal" data-target="#ventanaModal" title="Título: '+val.titulo+'<br>Matrícula: '+val.matricula+'" href="#" data-cont="<video src=\''+video+'\' controls></video>"><img src="'+thumb+'"><div class="caption"><h6 style="text-align: center;">'+val.titulo+'</h6></div></a></div></div>'+final;
                         cont = (cont+numCol >= 12) ? 0 : cont += numCol;
+                        total++;
                     });
                     $('.listaVideos').html(salida);
+                    $('.navbar-text span').html(total);
                 }
             });
             $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
