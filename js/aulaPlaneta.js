@@ -12,11 +12,13 @@ $(window).resize(function () {
     ajustaContenido();
 });
 function volverAnterior(id) {
-    $(id).click(function(){
+    $(id).click(function(e){
+        e.preventDefault();
         parent.history.back();
         return false;
     });
 }
+/*
 function iniciaNews() {
     if (Cookies.get('ap-news') !== 'ok') {
         $('.new01').popover({
@@ -67,6 +69,7 @@ function iniciaNews() {
         });
     }
 }
+*/
 function activaCargaForm(origen, destino) {
     $(destino).children().hide();
     $(origen + ' button').click(function(){
