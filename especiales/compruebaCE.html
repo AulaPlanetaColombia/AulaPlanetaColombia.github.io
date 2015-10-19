@@ -12,6 +12,9 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/dropzone.css" rel="stylesheet">
+        <style type="text/css">
+            body { padding-top: 70px; }
+        </style>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,7 +24,7 @@
         <![endif]-->
     </head>
     <body>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand volver" href="#">
                     <i class="fa fa-chevron-left"></i>&nbsp;&nbsp; Volver
@@ -45,33 +48,37 @@
             </div><!-- /.row -->
             <div class="row zonaDiagnostico">
                 <div class="col-sm-12">
-                    <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#enlacesCollapse" aria-expanded="false" aria-controls="enlacesCollapse">
-                        <i class="fa fa-link"></i> Comparar enlaces
-                    </button>
-                    <div class="collapse" id="enlacesCollapse">
-                        <div class="well">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Orden</th>
-                                        <th>Título del recurso</th>
-                                        <th>LoID</th>
-                                        <th>RES</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#comparar" aria-controls="comparar" role="tab" data-toggle="tab">
+                                <i class="fa fa-link"></i> Comparar enlaces
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#enlaces" aria-controls="enlaces" role="tab" data-toggle="tab">
+                                <i class="fa fa-th-list"></i> Ver listado de enlaces en el CE
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="comparar">
+                            <div class="well">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Orden</th>
+                                            <th>Título del recurso</th>
+                                            <th>LoID</th>
+                                            <th>RES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                </div><!-- /.col-sm-12 -->
-            </div><!-- /.row -->
-            <div class="row zonaDiagnostico">
-                <div class="col-sm-12">
-                    <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#listaXMLCollapse" aria-expanded="false" aria-controls="listaXMLCollapse">
-                        <i class="fa fa-th-list"></i> Ver listado de enlaces en el CE
-                    </button>
-                    <div class="collapse" id="listaXMLCollapse">
-                        <div class="well"></div>
+                        <div role="tabpanel" class="tab-pane" id="enlaces">
+                            <div class="well"></div>
+                        </div>
                     </div>
                 </div><!-- /.col-sm-12 -->
             </div><!-- /.row -->
@@ -145,21 +152,22 @@
                 }
             };
             function leeXML(CExml) {
-                // Usando RegEx según https://regex101.com/r/vF5cS9/4
-                var reg = /(<enlace(\W|\s)+destino=")(\/LoIdRedirect\.aspx\?LoId=)([A-Z]{2}_[0-9]{2}_[0-9]{2}_[A-Z]{2}_Recurso[0-9]{3})(&amp;)(IdRecurso=)(RES-\w+)("?\W?\s?"?>)(.+)(<\/enlace>)/g;
+                // Usando RegEx según https://regex101.com/r/vF5cS9/8
+                var reg = /(<enlace(\W|\s)+destino=")(\/LoIdRedirect\.aspx\?LoId=)([A-Z]{2}_[0-9]{2}_[0-9]{2}_[A-Z]{2}_Recurso[0-9]{3})(&amp;)(IdRecurso=)(RES-\w+)("?\W?\s?"?>)([\w\s<>\/áéíóúÁÉÍÓÚñÑüÜ:;,\.]*)(<\/enlace>)/g;
                 var matches = CExml.match(reg);
                 var salida = '<table class="table table-bordered"><thead><tr><th>LoID</th><th>RES</th><th>Título</th></thead><tbody>';
                 var cuaderno = [];
                 var cont = 0;
                 matches.forEach(function(val, index) {
-                    salida += '<tr><td>'+val.replace(reg,'$4')+'</td><td>'+val.replace(reg,'$7')+'</td><td>'+val.replace(reg,'$9')+'</td></tr>';
-                    if (val.replace(reg,'$9').substr(0, 4) != 'Mapa' && val.replace(reg,'$9').substr(0, 4) != 'Eval') {
+                    var tituloLimpio = val.replace(reg,'$9').replace(/<\/?\w+\W?>/g, '');
+                    salida += '<tr><td>'+val.replace(reg,'$4')+'</td><td>'+val.replace(reg,'$7')+'</td><td>'+tituloLimpio+'</td></tr>';
+                    if (tituloLimpio.substr(0, 4) != 'Mapa' && tituloLimpio.substr(0, 4) != 'Eval') {
                         cont++;
-                        cuaderno.push({orden: cont, titulo: val.replace(reg,'$9'), loid: val.replace(reg,'$4'), res: val.replace(reg,'$7')});
+                        cuaderno.push({orden: cont, titulo: tituloLimpio, loid: val.replace(reg,'$4'), res: val.replace(reg,'$7')});
                     }
                 });
                 salida += '</tbody></table>';
-                $('#listaXMLCollapse .well').html(salida);
+                $('#enlaces .well').html(salida);
                 return cuaderno;
             };
             function leeCSV(GRECOcsv) {
@@ -192,32 +200,31 @@
                         if (tituloCSV.substr(0,min) == tituloXML.substr(0,min) || loidCSV == loidXML || resCSV == resXML) {
                             repetido++;
                             if (loidCSV != loidXML)
-                                loid = 'El LoID '+loidXML+' no coincide con el de GRECO.';
+                                loid = loidXML+' no coincide.';
                             if (resCSV != resXML)
-                                res = 'El RES '+resXML+' no coincide con el de GRECO.';
+                                res = resXML+' no coincide.';
                             if (tituloCSV.substr(0,min) != tituloXML.substr(0,min))
-                                titulo = 'El título del recurso <strong>'+tituloXML+'</strong> no coincide con el de GRECO.';
+                                titulo = 'El título <strong>'+tituloXML+'</strong> no coincide.';
                         }
                     });
-                    if (repetido) {
+                    if (repetido > 0) {
                         if (repetido > 1)
-                            salida = 'El recurso '+loidCSV+' con título <strong>'+tituloCSV+'</strong> aparece repetido '+repetido+' veces en el CE.';
+                            salida = 'El recurso <strong>'+loidCSV+'</strong> con título <strong>'+tituloCSV+'</strong> aparece repetido '+repetido+' veces en el CE.';
                         else
                             if (loid != '' || res != '' || titulo != '')
                                 salida = titulo+' '+loid+' '+res;
                     }
                     if (repetido == 0) {
-                        //$('#enlacesCollapse .well').append('<div class="alert alert-warning" role="alert"><i class="fa fa-info-circle"></i> El recurso '+loidCSV+' con título '+tituloCSV+' no aparece en el CE. Revise en la escaleta.</div>');
-                        $('#enlacesCollapse .well table tbody').append('<tr><td>'+val.orden+'</td><td class="warning" colspan="3"><i class="fa fa-info-circle"></i> El recurso '+loidCSV+' con título <strong>'+tituloCSV+'</strong> no aparece en el CE. Revise en la escaleta.</td></tr>');
+                        $('#comparar .well table tbody').append('<tr><td>'+val.orden+'</td><td class="warning" colspan="3"><i class="fa fa-info-circle"></i> El recurso <strong>'+loidCSV+'</strong> con título <strong>'+tituloCSV+'</strong> no aparece en el CE. Revise en la escaleta.</td></tr>');
                     } else if (repetido > 1) {
-                        $('#enlacesCollapse .well table tbody').append('<tr><td>'+val.orden+'</td><td class="danger" colspan="3"><i class="fa fa-exclamation-triangle"></i> '+salida+'</td></tr>');
+                        $('#comparar .well table tbody').append('<tr><td>'+val.orden+'</td><td class="danger" colspan="3"><i class="fa fa-exclamation-triangle"></i> '+salida+'</td></tr>');
                     } else if (salida != '') {
                         titulo = (titulo != '') ? '<td class="danger"><i class="fa fa-exclamation-triangle"></i> '+titulo+'</td>' : '<td class="success"><i class="fa fa-check-circle"></i> '+tituloCSV+'</td>';
                         loid = (loid != '') ? '<td class="danger"><i class="fa fa-exclamation-triangle"></i> '+loid+'</td>' : '<td class="success"><i class="fa fa-check-circle"></i> '+loidCSV+'</td>';
                         res = (res != '') ? '<td class="danger"><i class="fa fa-exclamation-triangle"></i> '+res+'</td>' : '<td class="success"><i class="fa fa-check-circle"></i> '+res+'</td>';
-                        $('#enlacesCollapse .well table tbody').append('<tr><td>' + val.orden + '</td>' + titulo + loid + res + '</tr>');
+                        $('#comparar .well table tbody').append('<tr><td>' + val.orden + '</td>' + titulo + loid + res + '</tr>');
                     } else if (repetido == 1) {
-                        $('#enlacesCollapse .well table tbody').append('<tr><td>' + val.orden + '</td><td class="success"><i class="fa fa-check-circle"></i> '+tituloCSV+'</td><td class="success"><i class="fa fa-check-circle"></i> '+loidCSV+'</td><td class="success"><i class="fa fa-check-circle"></i></td></tr>');
+                        $('#comparar .well table tbody').append('<tr><td>' + val.orden + '</td><td class="success"><i class="fa fa-check-circle"></i> '+tituloCSV+'</td><td class="success"><i class="fa fa-check-circle"></i> '+loidCSV+'</td><td class="success"><i class="fa fa-check-circle"></i></td></tr>');
                     }
                 });
             };
