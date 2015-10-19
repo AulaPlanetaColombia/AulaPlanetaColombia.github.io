@@ -46,12 +46,39 @@
                     <button type="button" id="iniciaComp" class="btn btn-lg btn-primary btn-block" disabled="disabled">Iniciar comparación</button>
                 </div>
             </div><!-- /.row -->
+            <br>
+            <div class="row zonaDescarga">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" data-target="#info" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fa fa-question-circle"></i> Ayuda
+                    </button>
+                    <div class="collapse" id="info">
+                        <div class="well">
+                            <h4>Para elaborar el informe de GRECO:</h4>
+                            <p>Luego de ingresar el código del guion, seleccione TODOS los recursos del mismo, usando la opción <strong>Todos los resultados</strong> y la acción <strong>Generar informe</strong>.</p>
+                            <figure>
+                                <img src="../img/validadorCE01.jpg" class="img-responsive">
+                                <figcaption>
+                                    <p><i class="fa fa-check-circle"></i> Fíjese que haya seleccionado el total de recursos disponibles para ese guion.</p>
+                                </figcaption>
+                            </figure>
+                            <p>Luego, al configurar el informe, seleccione, <strong>únicamente</strong> las opciones <strong>Título del recurso</strong>, <strong>RES</strong>, <strong>Orden</strong> y <strong>LOID</strong> para crearlo.</p>
+                            <figure>
+                                <img src="../img/ValidadorCE02.jpg" class="img-responsive">
+                                <figcaption>
+                                    <p><i class="fa fa-check-circle"></i> Finalmente, haga clic en <strong>Exportar a Excel</strong>. El CSV descargado es el informe de GRECO.</p>
+                                </figcaption>
+                            </figure>
+                        </div><!-- /.well -->
+                    </div><!-- /#info -->
+                </div><!-- /.col-sm-6 -->
+            </div><!-- /.row -->
             <div class="row zonaDiagnostico">
                 <div class="col-sm-12">
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active">
                             <a href="#comparar" aria-controls="comparar" role="tab" data-toggle="tab">
-                                <i class="fa fa-link"></i> Comparar enlaces
+                                <i class="fa fa-link"></i> Validar enlaces
                             </a>
                         </li>
                         <li role="presentation">
