@@ -93,16 +93,21 @@
                         </p>
                         <p>
                             <a href="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/guiasYformatos/recursos/PlantillaTextosAdjuntos.docx" target="_blank">
-                                <i class="fa fa-file-word-o fa-2x"></i>&nbsp;&nbsp; Plantilla para textos adjuntos <span class="badge">¡Nuevo!</span>
+                                <i class="fa fa-file-word-o fa-2x"></i>&nbsp;&nbsp; Plantilla para textos adjuntos
                             </a>
                         </p>
                         <p>
                             <a href="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/guiasYformatos/generales/consejosGreco.pdf" target="_blank">
-                                <i class="fa fa-file-pdf-o fa-2x"></i>&nbsp;&nbsp; Consejos Útiles en GRECO <span class="badge">¡Nuevo!</span>
+                                <i class="fa fa-file-pdf-o fa-2x"></i>&nbsp;&nbsp; Consejos Útiles en GRECO
                             </a>
                         </p>
                         <p>
                             <a href="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/guiasYformatos/plataforma/GRECO/GRECO_ayuda.pdf" target="_blank">
+                                <i class="fa fa-file-pdf-o fa-2x"></i>&nbsp;&nbsp; Manual de GRECO
+                            </a>
+                        </p>
+                        <p>
+                            <a href="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/guiasYformatos/plataforma/MiniguiaAccesoGreco2.pdf" target="_blank">
                                 <i class="fa fa-file-pdf-o fa-2x"></i>&nbsp;&nbsp; Manual de GRECO
                             </a>
                         </p>
@@ -122,7 +127,7 @@
                         </p>
                         <p>
                             <a href="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/guiasYformatos/recursos/mapaConceptual/RecomendacionesMC.pdf" target="_blank">
-                                <i class="fa fa-file-pdf-o fa-2x"></i>&nbsp;&nbsp; Recomendaciones para la elaboración de fórmulas matemáticas para el Mapa conceptual <span class="badge">¡Nuevo!</span>
+                                <i class="fa fa-file-pdf-o fa-2x"></i>&nbsp;&nbsp; Recomendaciones para la elaboración de fórmulas matemáticas para el Mapa conceptual
                             </a>
                         </p>
                         <p>
@@ -273,7 +278,7 @@
                         </p>
                         <p class="new01">
                             <a href="https://raw.githubusercontent.com/AulaPlanetaColombia/RecursosGenerales/master/guiasYformatos/recursos/listadoRecursosAulaPlaneta.xlsx">
-                                <i class="fa fa-file-excel-o fa-2x"></i>&nbsp;&nbsp; Listado de recursos aprovechables en aulaPlaneta España <span class="badge">¡Actualizado!</span>
+                                <i class="fa fa-file-excel-o fa-2x"></i>&nbsp;&nbsp; Listado de recursos aprovechables en aulaPlaneta España
                             </a>
                         </p>
                         <p>
@@ -365,6 +370,7 @@
         cargaArchivos('guiasYformatos/recursos/motoresF/modelos','RecursosGenerales','master','AulaPlanetaColombia','modelosRecursos','<i class="fa fa-file-archive-o fa-2x"></i>');
         activaModal('#ventanaModal');
         cargaConvertidor('#ConvURLorigen', '#ConvURLspin', '#ConvURLdestino');
+        /*
         if (Cookies.get('ap-news') !== 'ok') {
             $('.new01').popover({
                 container: 'body',
@@ -383,7 +389,8 @@
                     cargaModalNews();
                 });
             });
-        };
+        }
+        */
         function cargaModalNews(){
             var cambios = '<ul><li>3º ESO: desaparecen los guiones MT porque la asignatura de Matemáticas se desdobla en dos materias, Matemáticas aplicadas (MTP) y Matemáticas académicas (MTC). Los guiones de ambas son muy similares, y son adaptaciones de los antiguos MT.</li><li>1º y 3º ESO-Lengua Castellana: Se han rehecho completamente los guiones.</li><li>Han desaparecido de la plataforma (porque su contenido se ha llevado a otros sitios):<ul><li>CN_07_05 - La corteza terrestre</li><li>CS_09_10 - El mundo globalizado</li><li>CS_09_11 - El mundo actual: cambios y contrastes</li></ul></li><li>Nuevo guión en Sociales de 1º ESO: CS_07_14- La tierra en el sistema solar</li><li>Nuevos guiones en Sociales de 3º ESO:<ul><li>CS_09_12 - La organización económica del mundo actual</li><li>CS_09_13 - La población y los recursos</li></ul></li></ul><p>A pesar de que en la plataforma (www.aulaplaneta.com) solo son visibles los nuevos guiones, en Greco se pueden utilizar ambos (viejos y nuevos), de manera que las escaletas se pueden montar con referencias de ambos lugares.</p>';
             $('#VentanaModal.modal-title').html('Cambios importantes en el listado de recursos españoles');
