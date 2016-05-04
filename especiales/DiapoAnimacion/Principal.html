@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="viewport" id="viewport" content="initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+		
+		<!--
+		 ************************************************************************
+		 * Visor Diaporamas
+		 * Versión: 15.12.21.1
+		 * Autores: Javier Garcés i Jesús Gironés (Sinergia)
+		 * Histórico:
+		 *  - 15.12.21.1: Obtener el xml desde el parámetro GET datos_xml
+		 *  - 15.12.2.1: En el navegador Android Nativo usa el tema PNG en vez del SVG
+		 *  - 15.9.29.1: Preloader añadido
+		 *  - 15.8.3.1: Imagen de fondo transparente por defecto añadida
+		 *  - 15.7.1.1: Recargar caché añadiendo la fecha a la carga del xml
+		 *  - 14.12.9.1: Nuevo tema css con botones de 35x35.
+		 *  - 14.7.28.1: Ocultar botón de sonido para el navegador nativo Android
+		 *  - 14.7.25.1: Cambio de estado del botón de activar/desactivar sonido
+		 *  - 14.7.24.1:
+		 *	· Nombres de ficheros compatibles con SCORM, substituir :
+		 *		Puntos y quiones por underline
+		 *		Caracteres en minúscula
+		 *	· Aplicada nueva estructura de carpetas
+		 ************************************************************************
+		-->
+	
+	<title>Visor de Diaporamas</title>
+
+	<!--<link rel="stylesheet" href="./motor/cepda_aulaplaneta35_theme/cepda_aulaplenta35.css?v=14.12.9.1" type="text/css" />
+	<link rel="stylesheet" href="./motor/cepda_aulaplanetasvg35_theme/cepda_aulaplentasvg35.css?v=14.12.9.1" type="text/css" />
+	<link rel="stylesheet" href="./motor/css/styles.css?v=14.6.16.1" type="text/css" />-->
+	
+	<!-- Versió extesa per debugar 
+	<script type="text/javascript" src="./extlib/jquery/1_11_1/jquery_1_11_1.js"></script>
+	<script type="text/javascript" src="./extlib/createjs/2013_12_12/preloadjs_0_4_1_min.js"></script> -->
+	<!-- Note: All core TweenJS classes are listed here: -->
+	<!-- <script type="text/javascript" src="./motor/js_test/EventDispatcher.js"></script>
+	<script type="text/javascript" src="./motor/js_test/Tween.js"></script>
+	<script type="text/javascript" src="./motor/js_test/Ease.js"></script>
+	<script type="text/javascript" src="./motor/js_test/CSSPlugin.js"></script> -->
+	<!-- Ticker is the only required EaselJS class -->
+	<!-- <script type="text/javascript" src="./motor/js_test/Ticker.js"></script>
+	<script type="text/javascript" src="./motor/js_test/touchcomp.js"></script>
+	<script type="text/javascript" src="./motor/js_test/xdom.js"></script>
+	<script type="text/javascript" src="./motor/js_test/pauseabletimeout.js"></script>
+	<script type="text/javascript" src="./motor/js_test/pppdiapodata.js"></script>
+	<script type="text/javascript" src="./motor/js_test/ppptextodata.js"></script>
+	<script type="text/javascript" src="./motor/js_test/pppdiapomanager.js"></script>
+	<script type="text/javascript" src="./motor/js_test/pppdiaporama.js"></script>
+	 -->
+	
+	<!-- versió min 
+	<script type="text/javascript" src="./extlib/jquery/1_11_1/jquery_1_11_1_min.js"></script>
+	<script type="text/javascript" src="./extlib/createjs/2013_12_12/preloadjs_0_4_1_min.js"></script>
+	<script type="text/javascript" src="./motor/js/pppdiapoall_min.js?v=15.8.3.1"></script>
+	 -->
+
+	<script type='text/javascript' src='lib/ppppreloader/1_0/ppppreloader_min.js'></script>
+	
+	<script type='text/javascript'>
+		// Rutina para obtener dinámicamente un parámetro de la URL
+		function getQueryParam(pName) {
+			var CurrURL = location.href;
+			var ParamsPos = CurrURL.indexOf("?", 0);
+			if (ParamsPos > 0) {
+				var ParamsStr = CurrURL.substr(ParamsPos+1, CurrURL.length);
+				var Params = ParamsStr.split("&");
+				for (var i=0;i<Params.length;i++) {
+					if (Params[i].indexOf(pName + "=", 0) === 0) {
+						return unescape(Params[i].substr(pName.length + 1, Params[i].length));
+					}
+				}
+			}
+			return "";
+		}
+		var datos_xml = getQueryParam("datos_xml");
+
+		// Precarga
+		var manifest = {
+			// Bloques de elementos a descargar
+			blocks: [
+				{ type: "manifest", files: [ { from: "module", file: "motor/manifest.json"} ] }
+				//{ type: "manifest", files: [ { from: "module", file: "motor/manifest_debug.json"} ] }
+			],
+			spinner: "no",
+			waitForDocumentReady: true, 
+			onEndLoading: function (manifest) {
+				// Miramos si hay errores
+				if (manifest.errors.length > 0) {
+					var msg = "Ended with errors: \n\n";
+					for (var i=0;i<manifest.errors.length;i++) {
+						msg += "- " + manifest.errors[i].type + ": " + manifest.errors[i].file + " [" + manifest.errors[i].url + "]\n";
+					}
+					pppSpinner.hide();
+					alert(msg);
+				} else { // Todo Ok!!!
+					// AHORA PROCEDEMOS A INICIALIZAR EL DIAPORAMA...
+					// Si no se ha redireccionado datos_xml, usamos el valor por defecto
+					if (datos_xml == "") {
+						datos_xml = pppPreloader.from("data", "data/datos.xml" + "?time=" + new Date().getTime());
+					}
+					
+					// Inicialització de la versió HTML5
+					// Escollim tema: per defecte fem servir el tema SVG
+					var theme = "aulaplanetasvg35";
+					// Si és IE fa servir la versió bitmaps (hi ha un bug a la implementació SVG)
+					// També ho fem si és el navegador natiu d'Android
+					if ((/msie|trident/.test(navigator.userAgent.toLowerCase())) || (((navigator.userAgent.indexOf('Mozilla/5.0') > -1) && (navigator.userAgent.indexOf('Android') > -1) && !(navigator.userAgent.indexOf('Chrome') > -1) && (navigator.userAgent.indexOf('Version') > -1)))) {
+						theme = "aulaplaneta35";
+					}
+						//alert(theme +" "+ navigator.userAgent);
+					pppSpinner.hide();
+					// Inicialitzem el diaporama
+					var diapo = new pppDiaporama("container", theme, false);
+					diapo.initDiaporama(/*"."*/pppPreloader.from("data", ""));
+				}
+			}
+		};
+
+
+		// Inicialización del sistema
+		pppPreloader.init( {
+			aliases: { "module": "CDN" },
+			remotePaths: { "module": "motors/diaporama/" }
+		});
+		pppSpinner.show();
+
+		// Cargamos el manifiesto del motor
+		pppPreloader.loadManifest(manifest);
+
+	</script>
+
+</head>
+<body>
+	<div id="container" style="width: 100%; height: 100%; border: 0; margin: 0;"></div>
+</body>
+</html>

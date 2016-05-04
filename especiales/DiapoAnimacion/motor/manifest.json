@@ -1,0 +1,18 @@
+{
+	"blocks" : [
+		{ "type" : "css", "files":  [
+			{ "from" : "module", "file" : "motor/cepda_aulaplaneta35_theme/cepda_aulaplenta35.css?v=14.12.9.1" },
+			{ "from" : "module", "file" : "motor/cepda_aulaplanetasvg35_theme/cepda_aulaplentasvg35.css?v=14.12.9.1" },
+			{ "from" : "module", "file" : "motor/css/styles.css?v=14.6.16.1" }
+		] },
+		{ "type" : "js", "files": [
+			{ "from" : "CDN", "file" : "extlib/jquery/1_11_1/jquery_1_11_1_min.js" },
+			{ "from" : "CDN", "file" : "extlib/createjs/2013_12_12/preloadjs_0_4_1_min.js" },
+
+			{ "from" : "module", "file" : "motor/js/pppdiapoall_min.js?v=15.12.21.1" }
+		]},
+		{ "type" : "img", "files": [
+			{ "from" : "module", "file" : "motor/images/nobk.png"}
+		]}
+	]
+}
