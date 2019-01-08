@@ -23,16 +23,14 @@ description: Recursos online de aulaPlaneta Colombia
 
 # List of links in the navigation bar
 navbar-links:
-  About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
-    - Learn markdown: "http://www.markdowntutorial.com/"
-    - GitHub Pages: "https://pages.github.com/"
-  Author's home: "http://deanattali.com"
+  Recursos para docentes:
+    - Cómo acceder a la plataforma: "plataforma"
+  Recursos para padres:
+    - Cómo activar la Agenda Escolar: "agenda"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/img/avatar-icon.png"
+avatar: "/img/logo_ap.jpg"
 
 # If you want to have an image logo in the top-left corner instead of the title text,
 # then specify the following parameter
@@ -42,15 +40,15 @@ avatar: "/img/avatar-icon.png"
 
 # Personalize the colors in your website. Colour values can be any valid CSS colour
 
-navbar-col: "#F5F5F5"
-navbar-text-col: "#404040"
-navbar-children-col: "#F5F5F5"
+navbar-col: "#223656"
+navbar-text-col: "#FFFFFF"
+navbar-children-col: "#00a2ff"
 page-col: "#FFFFFF"
-link-col: "#008AFF"
-hover-col: "#0085A1"
+link-col: "#223656"
+hover-col: "#00a2ff"
 footer-col: "#F5F5F5"
-footer-text-col: "#777777"
-footer-link-col: "#404040"
+footer-text-col: "#223656"
+footer-link-col: "#00a2ff"
 
 # Alternatively, the navbar, footer, and page background can be set to use background images
 # instead of colour
@@ -72,18 +70,18 @@ author:
 # If you want to add a new link that isn't here, you'll need to also edit the file _data/SocialNetworks.yml
 social-network-links:
   rss: true
-  email: "someone@example.com"
-  facebook: daattali
-  github: daattali
-  twitter: daattali
+  email: "aulaplanetacolombia@gmail.com"
+  facebook: aulaplaneta
+  github: aulaplanetacolombia
+  twitter: aulaplaneta
 #  reddit: yourname
 #  google-plus: +DeanAttali
-#  linkedin: daattali
+  linkedin: aulaplaneta
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
 #  instagram: deanat78
-#  youtube: user/deanat78
+  youtube: user/aulaPlaneta
 #  spotify: yourname
 #  telephone: +14159998888
 #  steam: deanat78
@@ -96,6 +94,7 @@ share-links-active:
   facebook: true
   google: false
   linkedin: true
+  youtube: true
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
@@ -156,7 +155,7 @@ title-separator: "-"
 # --- Don't need to touch anything below here (but you can if you want) --- #
 
 # Output options (more information on Jekyll's site)
-timezone: "America/Vancouver"
+timezone: "America/Bogota"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
