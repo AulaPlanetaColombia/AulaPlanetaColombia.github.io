@@ -45,7 +45,7 @@ navbar-text-col: "#FFFFFF"
 navbar-children-col: "#00a2ff"
 page-col: "#FFFFFF"
 link-col: "#223656"
-hover-col: "#00a2ff"
+hover-col: "#ffffff"
 footer-col: "#F5F5F5"
 footer-text-col: "#223656"
 footer-link-col: "#00a2ff"
@@ -93,12 +93,13 @@ share-links-active:
   twitter: true
   facebook: true
   google: false
-  linkedin: true
+  linkedin: false
   youtube: true
+  github: false
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "aulaPlaneta.com"  # eg. "deanattali.com/beautiful-jekyll"
+# url-pretty: "aulaPlaneta"  # eg. "deanattali.com/beautiful-jekyll"
 
 # --- Web Statistics Section --- #
 
