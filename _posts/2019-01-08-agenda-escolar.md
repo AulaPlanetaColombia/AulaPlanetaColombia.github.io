@@ -1,2 +1,2 @@
 ## Video de configuración de la Agenda Escolar
-![](../_vids/AgendaEscolar.mp4)
+![](../vids/AgendaEscolar.mp4)
