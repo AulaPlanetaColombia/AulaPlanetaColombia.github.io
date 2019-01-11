@@ -22,7 +22,7 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
                 <p class="post-title">{{ post.title }}</p>
                 <p>Tags:&nbsp;{% post.tags | where:"docentes","iniciar" | jsonify %}</p>
                         {% for tag in post.tags | where:"docentes","iniciar" %}
-                <a href="">Docentes:: {{ tag }}</a>
+                <a href="">Docentes::&nbsp;{{- tag -}}</a>
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
