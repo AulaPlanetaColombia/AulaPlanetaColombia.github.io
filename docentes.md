@@ -6,11 +6,9 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
 
 ## Ejemplo de plegable
 
-{% for post in paginator.posts %}
-<h2 class="post-title">{{ post.title }}</h2>
+{% for post in site.posts %}
+<p>:: {{ post | jsonify }}</p>
 {% endfor %}
-
-{{ paginator.posts | jsonify }}
 
 <div class="accordion" id="accordionExample">
   <div class="card">
