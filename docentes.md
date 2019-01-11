@@ -10,12 +10,7 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
 <h2 class="post-title">{{ post.title }}</h2>
 {% endfor %}
 
-## 2
-
-{-% for post in paginator.posts %-}
-<h2 class="post-title">{{- post.title -}}</h2>
-{-% endfor %-}
-
+{{ "Oliver" | append: " Castelblanco" }}
 
 <div class="accordion" id="accordionExample">
   <div class="card">
