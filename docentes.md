@@ -11,14 +11,14 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-          Iniciar con aulaPlaneta
+          Iniciar con aulaPlaneta - Procesando
         </button>
       </h2>
     </div>
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
           {% for post in paginator.posts %}
-        <p>Este es un post: {{ post.title }}</p>
+        <h2 class="post-title">{{ post.title }}</h2>
             {% if post.tags.size > 0 %}
                 {% if site.link-tags %}
                     {% for etiqueta in post.tags %}
