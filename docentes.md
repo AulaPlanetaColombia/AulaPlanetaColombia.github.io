@@ -7,7 +7,7 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
 ## Ejemplo de plegable
 
 {% for post in site.posts %}
-<p>:: {{ post | jsonify }}</p>
+<p>:: {{ post.title | jsonify }}</p>
 {% endfor %}
 
 <div class="accordion" id="accordionExample">
