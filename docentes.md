@@ -20,6 +20,9 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
           {% for post in paginator.posts %}
             {% if post.tags.size > 0 %}
                 {% if site.link-tags %}
+                    {% for etiqueta in post.tags %}
+          <span>Mira mi etiqueta: {{ etiqueta }}</span>
+                    {% endfor %}
                     {% for tag in post.tags | where:"docentes","iniciar" %}
         <a href="">{{- tag -}}</a>
                     {% endfor %}
