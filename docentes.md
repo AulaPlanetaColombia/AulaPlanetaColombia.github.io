@@ -6,6 +6,17 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
 
 ## Ejemplo de acordeón plegable
 
+{% for post in paginator.posts %}
+<h2 class="post-title">{{ post.title }}</h2>
+{% endfor %}
+
+## 2
+
+{-% for post in paginator.posts %-}
+<h2 class="post-title">{{- post.title -}}</h2>
+{-% endfor %-}
+
+
 <div class="accordion" id="accordionExample">
   <div class="card">
     <div class="card-header" id="headingOne">
@@ -19,6 +30,16 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
       <div class="card-body">
           {% for post in paginator.posts %}
         <h2 class="post-title">{{ post.title }}</h2>
+            {% if post.tags.size > 0 %}
+                {% if site.link-tags %}
+                    {% for etiqueta in post.tags %}
+          <p>Mira mi etiqueta: {{ etiqueta }}</p>
+                    {% endfor %}
+                    {% for tag in post.tags | where:"docentes","iniciar" %}
+        <a href="">{{- tag -}}</a>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
           {% endfor %}
       </div>
     </div>
