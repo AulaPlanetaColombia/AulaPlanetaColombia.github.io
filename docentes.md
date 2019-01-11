@@ -4,7 +4,7 @@ title: Recursos digitales para docentes
 subtitle: Instructivos y ayudas de aulaPlaneta para docentes
 ---
 
-## Ejemplo de acordeón plegable
+## Ejemplo de plegable
 
 {% for post in paginator.posts %}
 <h2 class="post-title">{{ post.title }}</h2>
