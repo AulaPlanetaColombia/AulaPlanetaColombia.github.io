@@ -6,10 +6,6 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
 
 ## Ejemplo de plegable
 
-{% for post in site.posts %}
-<p>:: {{ post.title | jsonify }}</p>
-{% endfor %}
-
 <div class="accordion" id="accordionExample">
   <div class="card">
     <div class="card-header" id="headingOne">
@@ -21,17 +17,15 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
     </div>
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
-          {% for post in paginator.posts %}
+          {% for post in site.posts %}
         <h2 class="post-title">{{ post.title }}</h2>
             {% if post.tags.size > 0 %}
-                {% if site.link-tags %}
-                    {% for etiqueta in post.tags %}
+              {% for etiqueta in post.tags %}
           <p>Mira mi etiqueta: {{ etiqueta }}</p>
-                    {% endfor %}
-                    {% for tag in post.tags | where:"docentes","iniciar" %}
-        <a href="">{{- tag -}}</a>
-                    {% endfor %}
-                {% endif %}
+              {% endfor %}
+              {% for tag in post.tags | where:"docentes","iniciar" %}
+        <a href="">Docentes:: {{- tag -}}</a>
+              {% endfor %}
             {% endif %}
           {% endfor %}
       </div>
