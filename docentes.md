@@ -1,7 +1,7 @@
 ---
+layout: page
 title: Recursos digitales para docentes
 subtitle: Instructivos y ayudas de aulaPlaneta para docentes
-tags: [docentes,instructivos,videotutoriales,indice]
 ---
 # Ejemplo de acordeón plegable
 
