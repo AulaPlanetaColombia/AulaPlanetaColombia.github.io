@@ -18,10 +18,11 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
           {% for post in paginator.posts %}
+        <p>Este es un post: {{ post.title }}</p>
             {% if post.tags.size > 0 %}
                 {% if site.link-tags %}
                     {% for etiqueta in post.tags %}
-          <span>Mira mi etiqueta: {{ etiqueta }}</span>
+          <p>Mira mi etiqueta: {{ etiqueta }}</p>
                     {% endfor %}
                     {% for tag in post.tags | where:"docentes","iniciar" %}
         <a href="">{{- tag -}}</a>
