@@ -23,7 +23,7 @@ description: Recursos online de aulaPlaneta Colombia
 
 # List of links in the navigation bar
 navbar-links:
-  Soy Docente: "docente"
+  Soy Docente: "docentes"
   Soy Padre de Familia: "padres"
   Soy Estudiante: "estudiantes"
 
