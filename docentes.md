@@ -10,7 +10,7 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
 <h2 class="post-title">{{ post.title }}</h2>
 {% endfor %}
 
-{{ site.posts | jsonify }}
+{{ paginator.posts | jsonify }}
 
 <div class="accordion" id="accordionExample">
   <div class="card">
