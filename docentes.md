@@ -23,7 +23,7 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
                         {% assign num_tag = '' %}
                         {% for tag in post.tags %}
                         Inicio: {{ num_tag }}<br>
-                        {% if tag == 'docentes' of tag == 'iniciar' %}
+                        {% if tag == 'docentes' or tag == 'iniciar' %}
                             If pre: {{ num_tag }}<br>
                             {% assign num_tag = num_tag | append: 'x' %}
                             If post: {{ num_tag }}
