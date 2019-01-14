@@ -11,28 +11,31 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
         <div class="card-header" id="headingOne">
             <h2 class="mb-0">
                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    Iniciar con aulaPlaneta - Procesando
+                    <i class="fa fa-caret-right"></i>
+                    Iniciar con aulaPlaneta
                 </button>
             </h2>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
+                <ul class="fa-ul">
                 {% for post in site.posts %}
                     {% if post.tags.size > 0 %}
                         {% assign num_tag = '' %}
                         {% for tag in post.tags %}
-                        Inicio: {{ num_tag }}<br>
                         {% if tag == 'docentes' or tag == 'iniciar' %}
-                            If pre: {{ num_tag }}<br>
                             {% assign num_tag = num_tag | append: 'x' %}
-                            If post: {{ num_tag }}
                         {% endif %}
                         {% endfor %}
                         {% if num_tag.size > 1 %}
-                <a href="" class="post-title">{{ post.title }}</a><br>
+                    <li>
+                        <i class="fa-li fa fa-arrow-right"></i>
+                        <a href="" class="post-title">{{ post.title }}</a>
+                    </li>
                         {% endif %}
                     {% endif %}
                 {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
