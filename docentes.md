@@ -19,7 +19,6 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
             <div class="card-body">
                 {% for post in site.posts %}
                     {% if post.tags.size > 0 %}
-                <p class="post-title">{{ post.title }}</p>
                         {% assign num_tag = '' %}
                         {% for tag in post.tags %}
                         Inicio: {{ num_tag }}<br>
@@ -28,10 +27,9 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
                             {% assign num_tag = num_tag | append: 'x' %}
                             If post: {{ num_tag }}
                         {% endif %}
-                <a href="">Docentes::&nbsp;{{- tag -}}</a><br>
                         {% endfor %}
                         {% if num_tag.size > 1 %}
-                        Este post si cumple con todo: {{ post.title }}
+                <a href="" class="post-title">{{ post.title }}</a><br>
                         {% endif %}
                     {% endif %}
                 {% endfor %}
