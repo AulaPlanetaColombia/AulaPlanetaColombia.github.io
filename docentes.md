@@ -43,6 +43,7 @@ Despliegue cada una de las categorías haciendo clic sobre el título para ver l
         <div class="card-header" id="tituloDos">
             <h2 class="mb-0">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#intermedio" aria-expanded="false" aria-controls="intermedio">
+                    <i class="fa fa-caret-right"></i>
                     Collapsible Group Item #2
                 </button>
             </h2>
@@ -57,6 +58,7 @@ Despliegue cada una de las categorías haciendo clic sobre el título para ver l
         <div class="card-header" id="tituloTres">
             <h2 class="mb-0">
                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#avanzado" aria-expanded="false" aria-controls="avanzado">
+                    <i class="fa fa-caret-right"></i>
                     Collapsible Group Item #3
                 </button>
             </h2>
