@@ -20,17 +20,17 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
                 {% for post in site.posts %}
                     {% if post.tags.size > 0 %}
                 <p class="post-title">{{ post.title }}</p>
-                        {% assign num_tag = 0 %}
+                        {% assign num_tag = '' %}
                         {% for tag in post.tags %}
                         Inicio: {{ num_tag }}<br>
                         {% if tag == 'docentes' of tag == 'iniciar' %}
                             If pre: {{ num_tag }}<br>
-                            {% assign num_tag == num_tag + 1 %}
+                            {% assign num_tag == num_tag | append: 'x' %}
                             If post: {{ num_tag }}
                         {% endif %}
                 <a href="">Docentes::&nbsp;{{- tag -}}</a><br>
                         {% endfor %}
-                        {% if num_tag > 1 %}
+                        {% if num_tag.size > 1 %}
                         Este post si cumple con todo: {{ post.title }}
                         {% endif %}
                     {% endif %}
