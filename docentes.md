@@ -25,7 +25,7 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
                         Inicio: {{ num_tag }}<br>
                         {% if tag == 'docentes' %}
                             If pre: {{ num_tag }}<br>
-                            {% num_tag ++ %}
+                            {% assign num_tag == num_tag + 1 %}
                         {% endif %}
                 <a href="">Docentes::&nbsp;{{- tag -}}</a><br>
                         {% endfor %}
