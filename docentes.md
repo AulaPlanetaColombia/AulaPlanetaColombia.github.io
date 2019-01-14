@@ -22,6 +22,7 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
                 <p class="post-title">{{ post.title }}</p>
                         {% assign num_tag = 0 %}
                         {% for tag in post.tags %}
+                        Inicio: {{ num_tag }}
                 <a href="">Docentes::&nbsp;{{- tag -}}</a>
                         {% endfor %}
                     {% endif %}
