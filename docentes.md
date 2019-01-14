@@ -20,9 +20,14 @@ subtitle: Instructivos y ayudas de aulaPlaneta para docentes
                 {% for post in site.posts %}
                     {% if post.tags.size > 0 %}
                 <p class="post-title">{{ post.title }}</p>
-                <p>XX{{ post.tags | where:"tags","iniciar" | jsonify }}XX</p>
+                        {% assign num_tag = 0 %}
                         {% for tag in post.tags %}
+                            {% if tag == 'docentes' or tag == 'iniciar' %}
+                                {% num_tag = num_tag + 1 %}
+                            {% endif %}
+                            {% if num_tag > 1 %}
                 <a href="">Docentes::&nbsp;{{- tag -}}</a>
+                            {% endif %}
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
