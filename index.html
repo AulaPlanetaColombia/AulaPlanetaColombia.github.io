@@ -7,77 +7,32 @@ use-site-title: true
 <div class="row">
 	<div class="col-md-4 col-sm-6 col-12">
 		<div class="card">
+            <img src="http://www.femdom-media-blog.com/blog/wp-content/uploads/2017/08/jerk-off-for-teacher-in-leather.jpg" class="card-img-top" alt="docentes">
 			<div class="card-body">
 				<h5 class="card-title">Soy Docente</h5>
 				<p class="card-text">Recursos digitales para docentes en aulaPlaneta.</p>
-				<a href="#" class="btn btn-primary">Ver listado de recursos</a>
+				<a href="docentes" class="btn btn-primary">Ver listado de recursos</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4 col-sm-6 col-12">
+		<div class="card">
+            <img src="..." class="card-img-top" alt="padres">
+			<div class="card-body">
+				<h5 class="card-title">Soy Padre de Familia</h5>
+				<p class="card-text">Recursos digitales para Padres de Familia en aulaPlaneta.</p>
+				<a href="padres" class="btn btn-primary">Ver listado de recursos</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4 col-sm-6 col-12">
+		<div class="card">
+            <img src="..." class="card-img-top" alt="estudiantes">
+			<div class="card-body">
+				<h5 class="card-title">Soy Estudiante</h5>
+				<p class="card-text">Recursos digitales para Estudiantes en aulaPlaneta.</p>
+				<a href="estudiantes" class="btn btn-primary">Ver listado de recursos</a>
 			</div>
 		</div>
 	</div>
 </div>
-
-<div class="posts-list">
-  {% for post in paginator.posts %}
-  <article class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-	  <h2 class="post-title">{{ post.title }}</h2>
-
-	  {% if post.subtitle %}
-	  <h3 class="post-subtitle">
-	    {{ post.subtitle }}
-	  </h3>
-	  {% endif %}
-    </a>
-
-    <!--p class="post-meta">
-      Publicado el {{ page.date | date: "%F" }}
-    </p-->
-
-    <div class="post-entry-container">
-      {% if post.image %}
-      <div class="post-image">
-        <a href="{{ post.url | prepend: site.baseurl }}">
-          <img src="{{ post.image }}">
-        </a>
-      </div>
-      {% endif %}
-      <div class="post-entry">
-        {{ post.excerpt | strip_html | xml_escape | truncatewords: site.excerpt_length }}
-        {% assign excerpt_word_count = post.excerpt | number_of_words %}
-        {% if post.content != post.excerpt or excerpt_word_count > site.excerpt_length %}
-          <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Leer&nbsp;Más]</a>
-        {% endif %}
-      </div>
-    </div>
-
-    {% if post.tags.size > 0 %}
-    <div class="blog-tags">
-      Tags:
-      {% if site.link-tags %}
-      {% for tag in post.tags %}
-      <a href="{{ site.baseurl }}/tags#{{- tag -}}">{{- tag -}}</a>
-      {% endfor %}
-      {% else %}
-        {{ post.tags | join: ", " }}
-      {% endif %}
-    </div>
-    {% endif %}
-
-   </article>
-  {% endfor %}
-</div>
-
-{% if paginator.total_pages > 1 %}
-<ul class="pager main-pager">
-  {% if paginator.previous_page %}
-  <li class="previous">
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Entradas Nuevas</a>
-  </li>
-  {% endif %}
-  {% if paginator.next_page %}
-  <li class="next">
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Entradas Anteriores &rarr;</a>
-  </li>
-  {% endif %}
-</ul>
-{% endif %}
