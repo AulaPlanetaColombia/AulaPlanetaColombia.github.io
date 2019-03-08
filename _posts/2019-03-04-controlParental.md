@@ -7,7 +7,7 @@ date: 'Fri Mar 08 2019 17:00:00 GMT-0500 (hora estándar de Colombia)'
 published: true
 tags: [recomendaciones, instructivo, padres]
 ---
-<a class="btn btn-primary" href="ControlParental.pdf" role="button" download>
+<a class="btn btn-primary btn-block" href="ControlParental.pdf" role="button" download>
     <i class="fa fa-download" aria-hidden="true"></i>
     Descargar presentación
 </a>
@@ -36,7 +36,7 @@ tags: [recomendaciones, instructivo, padres]
                     </li>
                     <li>
                         <i class="fa-li fa fa-circle"></i>
-                        <a href="https://colombiadigital.net/ninos-y-adolescentes-en-la-red.html" target="_blank">
+                        <a href="https://colombiadigital.net/ninos-y-adolescentes-en-la-red" target="_blank">
                             Los riesgos en niños y adolescentes
                         </a>
                     </li>
@@ -100,8 +100,8 @@ tags: [recomendaciones, instructivo, padres]
                     </li>
                     <li>
                         <i class="fa-li fa fa-circle"></i>
-                        <a href="https://www.pcmag.com/article2/0,2817,2346997,00.asp" target="_blank">
-                            Mejores herramientas de Control Parental 2017
+                        <a href="https://www.pcmag.com/roundup/240282/the-best-parental-control-software" target="_blank">
+                            Mejores herramientas de Control Parental 2019
                         </a>
                     </li>
                     <li>
@@ -120,6 +120,12 @@ tags: [recomendaciones, instructivo, padres]
                         <i class="fa-li fa fa-circle"></i>
                         <a href="http://support.xbox.com/es-ES/xbox-360/security/xbox-live-parental-control" target="_blank">
                             Control Parental en Xbox 360
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fa-li fa fa-circle"></i>
+                        <a href="https://www.playstation.com/es-es/get-help/help-library/my-account/parental-controls/ps4-parental-controls/" target="_blank">
+                            Control Parental en PlayStation 4
                         </a>
                     </li>
                     <li>
