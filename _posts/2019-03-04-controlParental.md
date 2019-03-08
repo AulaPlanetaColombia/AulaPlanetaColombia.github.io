@@ -7,7 +7,7 @@ date: 'Fri Mar 08 2019 17:00:00 GMT-0500 (hora estándar de Colombia)'
 published: true
 tags: [recomendaciones, instructivo, padres]
 ---
-<a class="btn btn-primary btn-block" href="ControlParental.pdf" role="button" download>
+<a class="btn btn-primary btn-block" href="../docs/ControlParental.pdf" role="button" download>
     <i class="fa fa-download" aria-hidden="true"></i>
     Descargar presentación
 </a>
