@@ -19,7 +19,7 @@ Despliegue cada una de las categorías haciendo clic sobre el título para ver l
         <div id="personalizar" class="collapse" aria-labelledby="tituloUno" data-parent="#categorias">
             <div class="card-body">
                 <ul class="fa-ul">
-                {% for post in site.posts %}
+                {% for post in site.posts reversed %}
                     {% if post.tags.size > 0 %}
                         {% assign num_tag = '' %}
                         {% for tag in post.tags %}
