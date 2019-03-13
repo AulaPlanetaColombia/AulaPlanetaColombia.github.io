@@ -10,13 +10,13 @@ Despliegue cada una de las categorías haciendo clic sobre el título para ver l
     <div class="card">
         <div class="card-header" id="tituloUno">
             <h2 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#iniciar" aria-expanded="false" aria-controls="iniciar">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#personalizar" aria-expanded="false" aria-controls="personalizar">
                     <i class="fa fa-caret-right"></i>
                     ¿Qué puedo ajustar en mi perfil?
                 </button>
             </h2>
         </div>
-        <div id="iniciar" class="collapse" aria-labelledby="tituloUno" data-parent="#categorias">
+        <div id="personalizar" class="collapse" aria-labelledby="tituloUno" data-parent="#categorias">
             <div class="card-body">
                 <ul class="fa-ul">
                 {% for post in site.posts %}
@@ -42,13 +42,13 @@ Despliegue cada una de las categorías haciendo clic sobre el título para ver l
     <div class="card">
         <div class="card-header" id="tituloDos">
             <h2 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#intermedio" aria-expanded="false" aria-controls="intermedio">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#actividades" aria-expanded="false" aria-controls="actividades">
                     <i class="fa fa-caret-right"></i>
                     ¿Cómo crear o modificar una ruta de actividades en aP?
                 </button>
             </h2>
         </div>
-        <div id="intermedio" class="collapse" aria-labelledby="tituloDos" data-parent="#categorias">
+        <div id="actividades" class="collapse" aria-labelledby="tituloDos" data-parent="#categorias">
             <div class="card-body">
                 <ul class="fa-ul">
                 {% for post in site.posts %}
@@ -74,13 +74,13 @@ Despliegue cada una de las categorías haciendo clic sobre el título para ver l
     <div class="card">
         <div class="card-header" id="tituloTres">
             <h2 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#avanzado" aria-expanded="false" aria-controls="avanzado">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#tareas" aria-expanded="false" aria-controls="tareas">
                     <i class="fa fa-caret-right"></i>
                     ¿Cómo enviar actividades a los estudiantes en aP?
                 </button>
             </h2>
         </div>
-        <div id="avanzado" class="collapse" aria-labelledby="tituloTres" data-parent="#categorias">
+        <div id="tareas" class="collapse" aria-labelledby="tituloTres" data-parent="#categorias">
             <div class="card-body">
                 <ul class="fa-ul">
                 {% for post in site.posts %}
@@ -104,15 +104,15 @@ Despliegue cada una de las categorías haciendo clic sobre el título para ver l
         </div>
     </div>
     <div class="card">
-        <div class="card-header" id="tituloTres">
+        <div class="card-header" id="tituloCuatro">
             <h2 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#avanzado" aria-expanded="false" aria-controls="avanzado">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#ce" aria-expanded="false" aria-controls="ce">
                     <i class="fa fa-caret-right"></i>
                     ¿Qué puedo hacer con el cuaderno de estudio?
                 </button>
             </h2>
         </div>
-        <div id="avanzado" class="collapse" aria-labelledby="tituloTres" data-parent="#categorias">
+        <div id="ce" class="collapse" aria-labelledby="tituloCuatro" data-parent="#categorias">
             <div class="card-body">
                 <ul class="fa-ul">
                 {% for post in site.posts %}
