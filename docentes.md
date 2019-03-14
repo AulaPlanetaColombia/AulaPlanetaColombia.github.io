@@ -51,7 +51,7 @@ Despliegue cada una de las categorías haciendo clic sobre el título para ver l
         <div id="actividades" class="collapse" aria-labelledby="tituloDos" data-parent="#categorias">
             <div class="card-body">
                 <ul class="fa-ul">
-                {% for post in site.posts %}
+                {% for post in site.posts reversed %}
                     {% if post.tags.size > 0 %}
                         {% assign num_tag = '' %}
                         {% for tag in post.tags %}
@@ -83,7 +83,7 @@ Despliegue cada una de las categorías haciendo clic sobre el título para ver l
         <div id="tareas" class="collapse" aria-labelledby="tituloTres" data-parent="#categorias">
             <div class="card-body">
                 <ul class="fa-ul">
-                {% for post in site.posts %}
+                {% for post in site.posts reversed %}
                     {% if post.tags.size > 0 %}
                         {% assign num_tag = '' %}
                         {% for tag in post.tags %}
@@ -115,7 +115,7 @@ Despliegue cada una de las categorías haciendo clic sobre el título para ver l
         <div id="ce" class="collapse" aria-labelledby="tituloCuatro" data-parent="#categorias">
             <div class="card-body">
                 <ul class="fa-ul">
-                {% for post in site.posts %}
+                {% for post in site.posts reversed %}
                     {% if post.tags.size > 0 %}
                         {% assign num_tag = '' %}
                         {% for tag in post.tags %}
