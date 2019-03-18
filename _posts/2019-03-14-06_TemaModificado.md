@@ -1,7 +1,7 @@
 ---
 title: ¿Cómo modifico un tema para ajustar los recursos que necesito?
 date: 2019-03-13 00:06:00
-tags: [docentes,actividades,instructivo,videotutorial,temas]
+tags: [docentes,recursos,instructivo,videotutorial,temas]
 ---
 Para modificar un tema de aulaPlaneta y poder adicionar o eliminar recursos, vea el siguiente video:
 <video controls="controls" style="width: 100%">
