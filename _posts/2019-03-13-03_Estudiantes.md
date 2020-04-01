@@ -1,7 +1,7 @@
 ---
 title: ¿Cómo selecciono mis grupos de estudiantes?
 date: 2019-03-13 00:03:00
-tags: [docentes,personalizar,instructivo,videotutorial,estudiantes]
+tags: [docentes,personalizar,instructivo,videotutorial]
 ---
 Para seleccionar sus grupos de clase, siga las siguientes instrucciones:
 <video controls="controls" style="width: 100%">
